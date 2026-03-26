@@ -22,3 +22,12 @@ export interface AnalyzeWasteParams {
   imageMediaType?: string
   municipalityContext: string
 }
+
+export type ChatRole = 'user' | 'assistant'
+
+export interface ChatMessage {
+  id: string
+  role: ChatRole
+  text?: string
+  analysis?: WasteAnalysisResult
+}
