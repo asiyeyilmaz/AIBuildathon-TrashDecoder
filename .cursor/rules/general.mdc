@@ -1,0 +1,27 @@
+---
+alwaysApply: true
+---
+
+# Genel Davranış Kuralları
+
+- Her adımı tamamladıktan sonra dur, onay almadan bir sonraki adıma geçme.
+- Kod yazarken önce dosya yapısını söyle, sonra kodu yaz.
+- TypeScript strict mode kullan, `any` tipi yasak.
+- `console.log` bırakma, sadece geliştirme sırasında kullan.
+- Her component için kısa bir Türkçe yorum satırı ekle.
+
+# Teknoloji Yığın Kuralları
+
+- Framework: React 18 + Vite + TypeScript.
+- Styling: Sadece Tailwind CSS, inline style yasak.
+- State: Context API + useReducer (Redux veya Zustand kullanma).
+- Routing: React Router v6.
+- HTTP: Native `fetch` kullan (Axios yasak).
+- AI API: Anthropic Claude (claude-sonnet-4-20250514) kullan.
+
+# UI/UX Kuralları
+
+- Tüm metinler Türkçe olmalı.
+- Fontlar: Nunito (body), Fraunces (heading).
+- Mobile-first tasarım, butonlar min. 44x44px.
+- Her async işlemde loading göster, hataları samimi bir Türkçe ile yaz.
