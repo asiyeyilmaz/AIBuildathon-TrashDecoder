@@ -8,6 +8,7 @@ interface UseClaudeChatResult {
   loading: boolean
   error: string | null
   sendTextMessage: (text: string) => Promise<void>
+  sendImageMessage: (imageBase64: string, imageMediaType: string) => Promise<void>
 }
 
 function buildMunicipalityContextText(
@@ -84,10 +85,59 @@ export function useClaudeChat(): UseClaudeChatResult {
     }
   }
 
+  const sendImageMessage = async (
+    imageBase64: string,
+    imageMediaType: string,
+  ): Promise<void> => {
+    if (!imageBase64 || loading) {
+      return
+    }
+
+    const userMessage: ChatMessage = {
+      id: crypto.randomUUID(),
+      role: 'user',
+      text: 'Fotoğraf gönderildi.',
+    }
+
+    setMessages((prev) => [...prev, userMessage])
+    setLoading(true)
+    setError(null)
+
+    try {
+      const analysis = await analyzeWaste({
+        text: 'Bu görseldeki atığı analiz et',
+        imageBase64,
+        imageMediaType,
+        municipalityContext,
+      })
+
+      const assistantMessage: ChatMessage = {
+        id: crypto.randomUUID(),
+        role: 'assistant',
+        analysis,
+      }
+
+      setMessages((prev) => [...prev, assistantMessage])
+    } catch {
+      setError('Üzgünüm, şu an görseli analiz edemedim. Lütfen tekrar dener misin?')
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          text: 'Şu an bağlantıda bir sorun var gibi görünüyor. Birazdan tekrar deneyelim.',
+        },
+      ])
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return {
     messages,
     loading,
     error,
     sendTextMessage,
+    sendImageMessage,
   }
 }
