@@ -2,7 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Uygulama genel renk ve font degiskenleri */
+:root {
+  --color-primary: #2D6A4F;
+  --color-accent: #95D5B2;
+  --color-warning: #F4A261;
+  --color-bg: #F8F5F0;
+  --color-text: #1A1A2E;
+  --font-body: 'Nunito', sans-serif;
+  --font-heading: 'Fraunces', serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-heading);
+}
+
+p {
+  margin: 0;
 }
