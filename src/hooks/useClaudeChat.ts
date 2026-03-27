@@ -70,6 +70,15 @@ export function useClaudeChat(): UseClaudeChatResult {
       }
 
       setMessages((prev) => [...prev, assistantMessage])
+      // localStorage'a kaydet
+         const yeniKayit = {
+          isim: trimmedText,
+          binColor: analysis.binColor,
+          tarih: new Date().toLocaleDateString("tr-TR"),
+        };
+         const gecmis = JSON.parse(localStorage.getItem("scanHistory") || "[]");
+        gecmis.push(yeniKayit);
+localStorage.setItem("scanHistory", JSON.stringify(gecmis));
     } catch {
       setError('Üzgünüm, şu an analiz yapamadım. Lütfen tekrar dener misin?')
       setMessages((prev) => [
@@ -118,6 +127,15 @@ export function useClaudeChat(): UseClaudeChatResult {
       }
 
       setMessages((prev) => [...prev, assistantMessage])
+      // localStorage'a kaydet
+       const yeniKayit = {
+        isim: "Görsel tarama",
+        binColor: analysis.binColor,
+        tarih: new Date().toLocaleDateString("tr-TR"),
+       };
+      const gecmis = JSON.parse(localStorage.getItem("scanHistory") || "[]");
+      gecmis.push(yeniKayit);
+      localStorage.setItem("scanHistory", JSON.stringify(gecmis));
     } catch {
       setError('Üzgünüm, şu an görseli analiz edemedim. Lütfen tekrar dener misin?')
       setMessages((prev) => [
