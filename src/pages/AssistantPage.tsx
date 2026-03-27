@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useClaudeChat } from '../hooks/useClaudeChat'
 import BinResult from '../components/assistant/BinResult'
 import ChatInterface from '../components/assistant/ChatInterface'
@@ -6,17 +7,32 @@ import ImageUploader from '../components/assistant/ImageUploader'
 
 type AssistantMode = 'chat' | 'scan'
 
+const KUTU_MESAJLARI: Record<string, string> = {
+  mavi: 'Mavi Kutu hakkında bilgi almak istiyorum',
+  sari: 'Sarı Kutu hakkında bilgi almak istiyorum',
+  yesil: 'Yeşil Kutu hakkında bilgi almak istiyorum',
+}
+
 function AssistantPage() {
-  // Sohbet ve tarama modlari arasinda gecis saglanir.
+  const [searchParams] = useSearchParams()
   const { messages, loading, error, sendTextMessage, sendImageMessage } = useClaudeChat()
   const [mode, setMode] = useState<AssistantMode>('chat')
+
+
+  const otomatikGonderildiRef = useRef(false)   
+
+     useEffect(() => {
+     const kutu = searchParams.get('kutu')
+      if (kutu && KUTU_MESAJLARI[kutu] && !otomatikGonderildiRef.current) {
+         otomatikGonderildiRef.current = true
+         sendTextMessage(KUTU_MESAJLARI[kutu])
+      }
+}, [searchParams, sendTextMessage])
 
   const latestAnalysis = useMemo(() => {
     for (let i = messages.length - 1; i >= 0; i--) {
       const msg = messages[i]
-      if (msg.analysis) {
-        return msg.analysis
-      }
+      if (msg.analysis) return msg.analysis
     }
     return null
   }, [messages])
@@ -63,9 +79,7 @@ function AssistantPage() {
               await sendImageMessage(imageBase64, imageMediaType)
             }}
           />
-
           {latestAnalysis ? <BinResult result={latestAnalysis} /> : null}
-
           {error ? (
             <div className="rounded-xl border border-warning/30 bg-warning/10 px-3 py-2 text-sm text-text">
               {error}
