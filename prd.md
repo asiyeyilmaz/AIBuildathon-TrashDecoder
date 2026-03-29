@@ -6,7 +6,7 @@
 # - Motivasyon Eksikliği: Geri dönüşümün sıkıcı ve karmaşık algılanması.
 
 # 2. ÇÖZÜM
-# - AI Nesne Tanıma: Kamera ile atığı anında teşhis (Gemini Pro Vision).
+# - AI Nesne Tanıma: Kamera ile atığı anında teşhis (Claude).
 # - Hyper-Local Engine: GPS tabanlı belediye kural eşleştirmesi.
 # - Gamification: Çocuklar için eğitici mini oyunlar ve puan sistemi.
 
