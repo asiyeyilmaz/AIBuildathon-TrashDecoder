@@ -92,8 +92,7 @@ export const WASTE_RULES: WasteRule[] = [
   // ─── CAM / YEŞİL ─────────────────────────────────────────────────
   {
     keywords: [
-      'cam şişe', 'cam sise', 'cam kavanoz', 'kavanoz',
-      'şişe', 'sise', 'cam bardak', 'cam kap',
+      'cam şişe', 'cam sise', 'cam kavanoz', 'kavanoz', 'cam bardak', 'cam kap',
     ],
     result: {
       binColor: 'yesil',
