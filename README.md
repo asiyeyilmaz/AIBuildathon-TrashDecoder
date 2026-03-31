@@ -111,7 +111,7 @@ npm run dev
 
 **Asiye Yılmaz** — [GitHub](https://github.com/asiyeyilmaz)
 
-*AI Buildathon 2025 için geliştirildi* 🏆
+*AI Buildathon 2026 için geliştirildi* 🏆
 
 ---
 
