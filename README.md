@@ -110,6 +110,8 @@ npm run dev
 ## Geliştirici
 
 **Asiye Yılmaz** — [GitHub](https://github.com/asiyeyilmaz)
+**Demo Video Linki: https://www.youtube.com/watch?v=oW1mTy9x-zc **
+
 
 *AI Buildathon 2026 için geliştirildi* 🏆
 
